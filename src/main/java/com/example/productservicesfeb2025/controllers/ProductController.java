@@ -2,6 +2,8 @@ package com.example.productservicesfeb2025.controllers;
 
 import com.example.productservicesfeb2025.models.Product;
 import com.example.productservicesfeb2025.services.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -16,13 +18,22 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable("id") long id) {
-    return null;
+    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
+        System.out.println("Some Random Text !!!");
+        Product product = productService.getProductById(id);
+
+        return new ResponseEntity<>(
+                product,
+                HttpStatus.OK
+        );
+
+
     }
 
     @GetMapping()
-    public List<Product> getAllProducts() {
-        return new ArrayList<>();
+    public List<Product> getAllProducts()
+    {
+        return productService.getAllProducts();
     }
 
     @PostMapping()

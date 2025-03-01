@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
 //datatypes are as per Fakestore link
 public class FakeStoreProductDto {
     private long id;
@@ -13,4 +14,6 @@ public class FakeStoreProductDto {
     private double price;
     private String imageURL;
     private String category;
+
+
 }

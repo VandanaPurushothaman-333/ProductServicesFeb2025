@@ -6,6 +6,9 @@ import com.example.productservicesfeb2025.models.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 
 public class FakeStoreProductService implements ProductService{
@@ -30,7 +33,7 @@ public class FakeStoreProductService implements ProductService{
 
         //second option
         Category category = new Category();
-        product.getCategory().setName(fakeStoreProductDto.getCategory());
+        product.setName(fakeStoreProductDto.getCategory());
         product.setCategory(category);
 
         return product;
@@ -39,15 +42,32 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
-    public Product getProduct(long productId) {
+    public Product getProductById(long productId) {
         //Make an API call to FakeStore and get the product with the given id
         //http://localhost:8080/products/10
 
-        FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("http://localhost:8080/products/" + productId,
-                FakeStoreProductDto.class);
+        throw new RuntimeException("Something went wrong");
+//        FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("http://localhost:8080/products/" + productId,
+//                FakeStoreProductDto.class);
         // output getting from this url needs to be mapped/stored to an internal object --> FakestoreDTO
         // convert FakestoreProductsdDto object into productObject.
 
-        return convertFakeStoreProductDtoToProductDto(fakeStoreProductDto);
+        //return convertFakeStoreProductDtoToProductDto(fakeStoreProductDto);
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+
+        FakeStoreProductDto[] fakeStoreProductDtos =
+                restTemplate.getForObject("http://localhost:8080/products/", FakeStoreProductDto[].class);
+    //because of type erasure property of java, we can't give --> List<FakeStoreProductDto>.class (will throw error)
+     // erasure effects collection (list) only, array no issue
+
+        List<Product> products = new ArrayList<>();
+        for (FakeStoreProductDto fakeStoreProductDto : fakeStoreProductDtos) {
+            products.add(convertFakeStoreProductDtoToProductDto(fakeStoreProductDto));
+        }
+
+        return products;
     }
 }
