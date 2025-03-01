@@ -1,5 +1,6 @@
 package com.example.productservicesfeb2025.controllers;
 
+import com.example.productservicesfeb2025.exception.ProductNotFoundException;
 import com.example.productservicesfeb2025.models.Product;
 import com.example.productservicesfeb2025.services.ProductService;
 import org.springframework.http.HttpStatus;
@@ -18,14 +19,22 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
-        System.out.println("Some Random Text !!!");
-        Product product = productService.getProductById(id);
+    public Product getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
+//        System.out.println("Some Random Text !!!");
+//
+//        ResponseEntity <Product> responseEntity = null;
+//
+//        try {
+//            Product product = productService.getProductById(id);
+//            responseEntity = new ResponseEntity<>(product, HttpStatus.OK);
+//        }
+//        catch (ProductNotFoundException e){
+//            System.out.println(e.getCause());
+//            responseEntity = new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//        }
 
-        return new ResponseEntity<>(
-                product,
-                HttpStatus.OK
-        );
+
+        return productService.getProductById(id);
 
 
     }
@@ -56,5 +65,10 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable("id") Long id) {
 
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<String> handleProductNotFoundException(ProductNotFoundException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
     }
 }

@@ -9,7 +9,7 @@ import lombok.Setter;
 //As we can't access Private classes directly, we can use Getter-Setter method to Get or Set the changes.
 // ANd Lombok provides Getter-setter methods without writing multiple lines of code (Auto)
 public class Product extends BaseModel {
-    private long id;
+    private Long id;
     private String name;
     private String title;
     private String description;

@@ -8,7 +8,7 @@ import lombok.Setter;
 
 //datatypes are as per Fakestore link
 public class FakeStoreProductDto {
-    private long id;
+    private Long id;
     private String title;
     private String description;
     private double price;
