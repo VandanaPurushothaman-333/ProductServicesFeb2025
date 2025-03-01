@@ -34,7 +34,7 @@ public class FakeStoreProductService implements ProductService{
 
         //second option
         Category category = new Category();
-        product.setName(fakeStoreProductDto.getCategory());
+        category.setName(fakeStoreProductDto.getCategory());
         product.setCategory(category);
 
         return product;
