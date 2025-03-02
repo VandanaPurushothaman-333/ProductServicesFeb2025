@@ -3,6 +3,7 @@ package com.example.productservicesfeb2025.controllers;
 import com.example.productservicesfeb2025.exception.ProductNotFoundException;
 import com.example.productservicesfeb2025.models.Product;
 import com.example.productservicesfeb2025.services.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
     private ProductService productService;
-    public ProductController(ProductService productService) {
+    public ProductController(@Qualifier("fakeStoreProductService") ProductService productService) {
         this.productService = productService;
     }
 

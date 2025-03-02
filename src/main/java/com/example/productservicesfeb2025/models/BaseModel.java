@@ -6,18 +6,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ValueGenerationType;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
 @Getter
 @Setter
-@MappedSuperclass
+@MappedSuperclass //No table for BaseModel class, but all the attrs of BaseModel
+//will be present all the child class tables.
+
 public class BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO INCREMENT
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // AUTO INCREMENT
     private Long id;
 }
-
-
-/*
-MappedSuperClass - No table for BaseModel class, but all the attrs of BaseModel
-will be present all the child class tables.
- */

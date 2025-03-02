@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("SelfProductService")
 public class SelfProductService implements ProductService {
     @Override
     public Product getProductById(Long id) throws ProductNotFoundException {

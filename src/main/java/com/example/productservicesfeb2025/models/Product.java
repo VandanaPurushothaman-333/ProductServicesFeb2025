@@ -7,7 +7,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "products") //will create a table from model. not necessary to give name in bracket.
+@Entity(name = "products")
+//will create a table from model. not necessary to give name in bracket.
 // if not provided, model name will be taken as table name.
 
 
