@@ -15,13 +15,13 @@ public class GlobalExceptionHandler {
         //return new ResponseEntity<>("Product with given id doesn't exist", HttpStatus.BAD_GATEWAY);
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
-    @ExceptionHandler(ArrayIndexOutOfBoundsException.class)
-    public void handleArrayIndexedOutOfBound(){
-
-    }
-    @ExceptionHandler(Exception.class)
-    public void handleException() {
-
-    }
+//    @ExceptionHandler(ArrayIndexOutOfBoundsException.class)
+//    public void handleArrayIndexedOutOfBound(){
+//
+//    }
+//    @ExceptionHandler(Exception.class)
+//    public void handleException() {
+//
+//    }
 
 }
